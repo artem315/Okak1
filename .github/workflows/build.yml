@@ -25,6 +25,13 @@ jobs:
         with:
           gradle-version: current
 
+      - name: Unzip project
+        run: |
+          for z in *.zip; do
+            [ -f "$z" ] && unzip -o "$z" -d project
+          done
+          true
+
       - name: Build
         run: |
           SETTINGS=$(find . -name settings.gradle -not -path '*/.git/*' | head -1)
